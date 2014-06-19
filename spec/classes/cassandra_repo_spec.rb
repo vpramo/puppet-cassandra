@@ -7,6 +7,7 @@ describe 'cassandra::repo' do
     { :repo_name => 'rspec_repo', 
       :baseurl   => 'http://cassandra.repo.com/',
       :gpgkey    => 'http://cassandra.repo.com/repo_key',
+      :key_id    => 'B999A372',
       :repos     => 'main',
       :release   => 'stable',
       :pin       => 42,
@@ -17,13 +18,14 @@ describe 'cassandra::repo' do
 
   context 'on Debian' do
 
-    let(:facts) {{ :osfamily => 'Debian' }}
+    let(:facts) {{ :osfamily => 'Debian', :lsbdistid => 'debian' }}
 
     it 'does contain class cassandra::repo::debian' do
       should contain_class('cassandra::repo::debian').with({
         :repo_name  => 'rspec_repo',
         :location   => 'http://cassandra.repo.com/',
         :repos      => 'main',
+        :key        => 'B999A372',
         :release    => 'stable',
         :key_source => 'http://cassandra.repo.com/repo_key',
         :pin        => 42,
@@ -34,6 +36,7 @@ describe 'cassandra::repo' do
       should contain_apt__source('rspec_repo').with({
         :location   => 'http://cassandra.repo.com/',
         :repos      => 'main',
+        :key        => 'B999A372',
         :release    => 'stable',
         :key_source => 'http://cassandra.repo.com/repo_key',
         :pin        => 42,
@@ -67,7 +70,7 @@ describe 'cassandra::repo' do
 
   context 'on some other OS' do
 
-    let(:facts) {{ :osfamily => 'Gentoo' }}
+    let(:facts) {{ :osfamily => 'Gentoo', :lsbdistid => 'gentoo' }}
 
     it 'fails' do
       expect {

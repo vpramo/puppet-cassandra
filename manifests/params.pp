@@ -32,6 +32,14 @@ class cassandra::params {
         default => $::cassandra_repo_release
     }
 
+    $repo_key_id = $::cassandra_repo_key_id ? {
+        undef   => $::osfamily ? {
+            'Debian' => 'B999A372',
+            default  => undef,
+        },
+        default => $::cassandra_repo_gpgkey
+    }
+
     $repo_release = $::cassandra_repo_release ? {
         undef   => 'stable',
         default => $::cassandra_repo_release

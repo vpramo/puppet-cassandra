@@ -3,6 +3,7 @@ class cassandra::repo (
     $baseurl,
     $gpgkey,
     $repos,
+    $key_id,
     $release,
     $pin,
     $gpgcheck,
@@ -15,6 +16,7 @@ class cassandra::repo (
                 location   => $baseurl,
                 repos      => $repos,
                 release    => $release,
+                key        => $key_id,
                 key_source => $gpgkey,
                 pin        => $pin,
             }

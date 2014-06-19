@@ -4,6 +4,7 @@ describe 'cassandra' do
 
   let(:facts)  do
     { :osfamily => 'Debian',
+      :lsbdistid => 'debian',
       :processorcount => 4,
       :lsbdistcodename => 'squeeze',
       :ipaddress => '1.2.3.4'

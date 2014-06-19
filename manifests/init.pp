@@ -8,6 +8,7 @@ class cassandra(
     $repo_baseurl               = $cassandra::params::repo_baseurl,
     $repo_gpgkey                = $cassandra::params::repo_gpgkey,
     $repo_repos                 = $cassandra::params::repo_repos,
+    $repo_key_id                = $cassandra::params::repo_key_id,
     $repo_release               = $cassandra::params::repo_release,
     $repo_pin                   = $cassandra::params::repo_pin,
     $repo_gpgcheck              = $cassandra::params::repo_gpgcheck,
@@ -124,6 +125,7 @@ class cassandra(
         class { 'cassandra::repo':
             repo_name => $repo_name,
             baseurl   => $repo_baseurl,
+            key_id    => $repo_key_id,
             gpgkey    => $repo_gpgkey,
             repos     => $repo_repos,
             release   => $repo_release,
