@@ -1,7 +1,7 @@
 Puppet Cassandra module (DSC)
 ==========================================
 
-[![Build Status](https://secure.travis-ci.org/gini/puppet-cassandra.png)](http://travis-ci.org/gini/puppet-cassandra)
+[![Build Status](https://secure.travis-ci.org/msimonin/puppet-cassandra.png)](http://travis-ci.org/msimonin/puppet-cassandra)
 
 Overview
 --------
@@ -47,7 +47,7 @@ Support
 
 Please create bug reports and feature requests in [GitHub issues] [2].
 
-[2]: https://github.com/gini/puppet-cassandra/issues
+[2]: https://github.com/msimonin/puppet-cassandra/issues
 
 
 License

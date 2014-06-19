@@ -1,0 +1,38 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+# Vagrantfile API/syntax version. Don't touch unless you know what you're doing!
+VAGRANTFILE_API_VERSION = "2"
+
+Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
+  config.vm.box = "puppetlabs/ubuntu-12.04-32-puppet"
+
+  config.vm.define "seed1" do |seed1|
+    seed1.vm.hostname = "seed1.localdomain"
+    seed1.vm.synced_folder "../", "/etc/puppet/modules/cassandra"
+
+    seed1.vm.network "private_network", ip: "192.168.100.2"
+
+    seed1.vm.provider "virtualbox" do |v|
+      v.memory = 2048
+      v.cpus = 1
+    end
+
+  end
+
+  config.vm.define "seed2" do |seed2|
+    seed2.vm.hostname = "seed2.localdomain"
+    seed2.vm.synced_folder "../", "/etc/puppet/modules/cassandra"
+
+    seed2.vm.network "private_network", ip: "192.168.100.3"
+
+    seed2.vm.provider "virtualbox" do |v|
+      v.memory = 2048
+      v.cpus = 1
+    end
+
+
+  end
+
+
+end
