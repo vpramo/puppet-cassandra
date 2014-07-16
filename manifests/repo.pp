@@ -7,18 +7,18 @@ class cassandra::repo (
     $release,
     $pin,
     $gpgcheck,
-    $enabled
+    $enabled,
 ){
     case $::osfamily {
         'Debian': {
             class { 'cassandra::repo::debian':
-                repo_name  => $repo_name,
-                location   => $baseurl,
-                repos      => $repos,
-                release    => $release,
-                key        => $key_id,
-                key_source => $gpgkey,
-                pin        => $pin,
+                repo_name    => $repo_name,
+                location     => $baseurl,
+                repos        => $repos,
+                release      => $release,
+                key          => $key_id,
+                key_source   => $gpgkey,
+                pin          => $pin,
             }
         }
         'RedHat': {

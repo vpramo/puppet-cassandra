@@ -12,9 +12,9 @@ node 'seed1' {
 node 'seed2' {
   class { 'cassandra':
     cluster_name   => 'testCassandra',
-    package_name   => 'cassandra',
+    package_name   => 'dsc12',
     seeds          => [ '192.168.100.2', '192.168.100.3'],
-    version        => '1.2.16',
+    version        => '1.2.18-1',
     repo_pin       => false,
     listen_address => "192.168.100.3"
   }
