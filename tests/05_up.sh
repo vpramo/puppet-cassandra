@@ -1,2 +1,2 @@
 #!/bin/bash
-vagrant up seed1 seed2
+vagrant up seed1 node1

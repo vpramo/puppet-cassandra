@@ -12,7 +12,7 @@ vagrant ssh seed1  -c "
 sudo puppet module install puppetlabs/apt 
 "
 
-vagrant ssh seed2  -c "
+vagrant ssh node1  -c "
 sudo puppet module install puppetlabs/apt 
 "
 

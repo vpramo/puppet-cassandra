@@ -11,27 +11,33 @@ Install Apache Cassandra from the [DataStax Community Edition] [1].
 [1]: http://planetcassandra.org/
 
 
-Usage
------
+Usage (from the test directory)
+--------------------------------
 
-Simple example:
+```ruby
+node 'seed1' {
+  class { 'cassandra':
+    cluster_name      => 'testCassandra',
+    package_name      => 'cassandra',
+    seeds             => [ '192.168.100.2'],
+    version           => '2.0.10',
+    listen_address    => "192.168.100.2"
+  }
+}
 
-    class { 'cassandra':
-      cluster_name => 'YourCassandraCluster',
-      seeds        => [ '192.0.2.5', '192.0.2.23', '192.0.2.42', ],
-    }
+
+node 'node1' {
+  class { 'cassandra':
+    cluster_name   => 'testCassandra',
+    package_name   => 'cassandra',
+    seeds          => [ '192.168.100.2'],
+    version        => '2.0.10',
+    listen_address => "192.168.100.3"
+  }
+}
 
 
-If you're running on Amazon EC2 (or a similar environment) you might want to set the `broadcast_address`
-and the `endpoint_snitch` accordingly.
-
-    class { 'cassandra':
-      cluster_name      => 'YourEc2CassandraCluster',
-      seeds             => [ '192.0.2.5', '192.0.2.23', '192.0.2.42', ],
-      listen_address    => $ec2_local_ipv4,
-      broadcast_address => $ec2_public_ipv4,
-      endpoint_snitch   => 'Ec2MultiRegionSnitch',
-    }
+```
 
 
 Supported Platforms
@@ -40,7 +46,6 @@ Supported Platforms
 The module has been tested on the following operating systems. Testing and patches for other platforms are welcome.
 
 * Debian Linux 7.0 (Wheezy)
-
 
 Support
 -------

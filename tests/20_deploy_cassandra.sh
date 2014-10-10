@@ -10,9 +10,9 @@
 
 vagrant ssh seed1  -c "
 sudo puppet apply /vagrant/site.pp
-"
+"&
 
-vagrant ssh seed2  -c "
+vagrant ssh node1  -c "
 sudo puppet apply /vagrant/site.pp
 "
 
