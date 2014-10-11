@@ -57,6 +57,7 @@ class cassandra::config(
         ensure  => file,
         content => template("${module_name}/cassandra-env.sh.erb"),
     }
+
     $version_config = regsubst($cassandra::version, '\..*$', '')
     notice("cassandra will use the configuration for version ${version_config}")
     file { "${config_path}/cassandra.yaml":

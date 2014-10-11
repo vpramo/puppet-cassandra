@@ -21,15 +21,12 @@ class cassandra::repo::debian(
     # see https://github.com/msimonin/puppet-cassandra/issues/2
 
     # in case of dsc 1.2.6-1 -> pin cassandra to 1.2.6
-    if $cassandra::version != installed {
-      $version_pin = regsubst($cassandra::version, '-.*$', '')
-      notice("cassandra will be pinned to ${version_pin}")
+    $version_pin = regsubst($cassandra::version, '-.*$', '')
+    notice("cassandra will be pinned to ${version_pin}")
 
       apt::pin { "hold_cassandra_at_${version_pin}":
         packages => "cassandra",
         version  => $version_pin,
         priority => 1001,
       }
-    }
-
 }

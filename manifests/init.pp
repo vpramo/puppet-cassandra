@@ -58,6 +58,7 @@ class cassandra(
     validate_string($initial_token)
     validate_string($endpoint_snitch)
 
+    validate_re($version, '\d*\.\d*\.\d*', 'The version should be x.y.z')
     validate_re($start_rpc, '^(true|false)$')
     validate_re($start_native_transport, '^(true|false)$')
     validate_re($rpc_server_type, '^(hsha|sync|async)$')
@@ -172,6 +173,7 @@ class cassandra(
         disk_failure_policy        => $disk_failure_policy,
         thread_stack_size          => $thread_stack_size,
     }
+
 
     class { 'cassandra::service':
         service_enable => $service_enable,

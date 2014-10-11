@@ -99,7 +99,7 @@ class cassandra::params {
     }
 
     $version = $::cassandra_version ? {
-        undef   => 'installed',
+        undef   => '2.0.10',
         default => $::cassandra_version,
     }
 
