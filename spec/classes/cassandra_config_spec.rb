@@ -9,6 +9,7 @@ describe 'cassandra::config' do
     end
   let(:params) do
     {
+      :version                    => '1',
       :config_path                => '/etc/cassandra',
       :max_heap_size              => '',
       :heap_newsize               => '',
@@ -87,6 +88,7 @@ describe 'cassandra::config' do
     end
   let(:params) do
     {
+      :version                    => 1,
       :config_path                => '/etc/cassandra/conf',
       :max_heap_size              => '',
       :heap_newsize               => '',
