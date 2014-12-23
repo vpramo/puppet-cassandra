@@ -19,6 +19,8 @@ class cassandra::repo (
                 key          => $key_id,
                 key_source   => $gpgkey,
                 pin          => $pin,
+                before       => Anchor['cassandra::repo::end'],
+                require      => Anchor['cassandra::repo::begin'],
             }
         }
         'RedHat': {
@@ -28,10 +30,14 @@ class cassandra::repo (
                 gpgkey    => $gpgkey,
                 gpgcheck  => $gpgcheck,
                 enabled   => $enabled,
+                before    => Anchor['cassandra::repo::end'],
+                require   => Anchor['cassandra::repo::begin'],
             }
         }
         default: {
             fail("OS family ${::osfamily} not supported")
         }
     }
+
+    anchor {'cassandra::repo::begin': } -> anchor {'cassandra::repo::end': }
 }
