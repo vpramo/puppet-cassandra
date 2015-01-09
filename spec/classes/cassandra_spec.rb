@@ -80,7 +80,6 @@ describe 'cassandra' do
       })
     end
     ## /Finished install resources
-
     it 'does contain class cassandra::config' do
       should contain_class('cassandra::config').with({
         :max_heap_size              => '',
@@ -93,6 +92,8 @@ describe 'cassandra' do
         :rpc_address                => '0.0.0.0',
         :rpc_port                   => 9160,
         :rpc_server_type            => 'hsha',
+        :rpc_min_threads            => 0,
+        :rpc_max_threads            => 2048,
         :storage_port               => 7000,
         :partitioner                => 'org.apache.cassandra.dht.Murmur3Partitioner',
         :data_file_directories      => ['/var/lib/cassandra/data'],
@@ -109,7 +110,7 @@ describe 'cassandra' do
         :endpoint_snitch            => 'SimpleSnitch',
         :internode_compression      => 'all',
         :disk_failure_policy        => 'stop',
-        :start_native_transport     => 'false',
+        :start_native_transport     => 'true',
         :start_rpc                  => 'true',
         :native_transport_port      => 9042,
         :num_tokens                 => 256,
@@ -151,6 +152,8 @@ describe 'cassandra' do
                     :initial_token              => [['bozo'], [true]],
                     :endpoint_snitch            => [['bozo'], [true]],
                     :rpc_server_type            => [['hsha', 'sync', 'async'], [9, 'bozo', true]],
+                    :rpc_min_threads            => [[1, 12, 65535], [-1, -10, "Banana"]],
+                    :rpc_max_threads            => [[1, 12, 65535], [-1, -10, "Banana"]],
                     :incremental_backups        => [['true', 'false'], [9, 'bozo']],
                     :snapshot_before_compaction => [['true', 'false'], [9, 'bozo']],
                     :auto_snapshot              => [['true', 'false'], [9, 'bozo']],
@@ -162,7 +165,7 @@ describe 'cassandra' do
                     :data_file_directories      => [[['a', 'b']], ['bozo', '']],
                     :jmx_port                   => [[1, 65535], [420000, true]],
                     :listen_address             => [['1.2.3.4'], ['4.5.6']],
-		    :broadcast_address          => [['1.2.3.4'], ['1.2', 'foo']],
+                    :broadcast_address          => [['1.2.3.4'], ['1.2', 'foo']],
                     :rpc_address                => [['1.2.3.4'], ['4.5.6']],
                     :rpc_port                   => [[1, 65535], [420000, true]],
                     :storage_port               => [[1, 65535], [420000, true]],
@@ -177,7 +180,7 @@ describe 'cassandra' do
     test_pattern.each do |param, pattern|
 
       describe "#{param} " do
-        
+
         pattern[0].each do |p|
 
           let(:params) {{ :seeds => ['1.2.3.4'], param => p }}
@@ -191,7 +194,7 @@ describe 'cassandra' do
       describe "#{param}" do
 
         pattern[1].each do |p|
-        
+
           let(:params) {{ :seeds => ['1.2.3.4'], param => p }}
 
           it "fails with #{p}" do
