@@ -99,7 +99,7 @@ class cassandra::params {
     }
 
     $version = $::cassandra_version ? {
-        undef   => '2.0.10',
+        undef   => '2.1.2',
         default => $::cassandra_version,
     }
 
@@ -138,6 +138,16 @@ class cassandra::params {
         default => $::cassandra_broadcast_address,
     }
 
+    $authenticator = $::cassandra_authenticator ? {
+        undef   => 'AllowAllAuthenticator',
+        default => $::cassandra_authenticator,
+    }
+
+    $authorizer = $::cassandra_authorizer ? {
+        undef   => 'AllowAllAuthorizer',
+        default => $::cassandra_authorizer,
+    }
+
     $rpc_address = $::cassandra_rpc_address ? {
         undef   => '0.0.0.0',
         default => $::cassandra_rpc_address,
@@ -151,6 +161,16 @@ class cassandra::params {
     $rpc_server_type = $::cassandra_rpc_server_type ? {
         undef   => 'hsha',
         default => $::cassandra_rpc_server_type,
+    }
+
+    $rpc_min_threads = $::cassandra_rpc_min_threads ? {
+        undef   => 0,
+        default => $::cassandra_rpc_min_threads,
+    }
+
+    $rpc_max_threads = $::cassandra_rpc_max_threads ? {
+        undef   => 2048,
+        default => $::cassandra_rpc_max_threads,
     }
 
     $storage_port = $::cassandra_storage_port ? {
@@ -236,7 +256,7 @@ class cassandra::params {
     }
 
     $start_native_transport = $::cassandra_start_native_transport ? {
-        undef   => 'false',
+        undef   => 'true',
         default => $::cassandra_start_native_transport,
     }
 
@@ -269,4 +289,61 @@ class cassandra::params {
         undef   => 'running',
         default => $::cassandra_service_ensure,
     }
+    $server_encryption_internode= $::cassandra_server_encryption_internode ? {
+        undef   => 'none',
+        default => $::cassandra_server_encryption_internode,
+    }
+    $server_encryption_require_auth = $::cassandra_server_encryption_require_auth ? {
+        undef   => false,
+        default => $::cassandra_server_encryption_require_auth,
+    }
+    $server_encryption_keystore = $::cassandra_server_encryption_keystore ? {
+        undef   => '',
+        default => $::cassandra_server_encryption_keystore,
+    }
+    $server_encryption_keystore_password = $::cassandra_server_encryption_keystore_password ? {
+        undef   => '',
+        default => $::cassandra_server_encryption_keystore_password,
+    }
+    $server_encryption_truststore = $::cassandra_server_encryption_truststore ? {
+        undef   => '',
+        default => $::cassandra_server_encryption_truststore,
+    }
+    $server_encryption_truststore_password = $::cassandra_server_encryption_truststore_password ? {
+        undef   => '',
+        default => $::cassandra_server_encryption_truststore_password,
+    }
+    $server_encryption_cipher_suites = $::cassandra_server_encryption_cipher_suites ? {
+        undef   => [],
+        default => $::cassandra_server_encryption_cipher_suites,
+    }
+    $client_encryption_enabled = $::cassandra_client_encryption_enabled ? {
+        undef   => false,
+        default => $::cassandra_client_encryption_enabled,
+    }
+    $client_encryption_require_auth = $::cassandra_client_encryption_require_auth ? {
+        undef   => false,
+        default => $::cassandra_client_encryption_require_auth,
+    }
+    $client_encryption_keystore = $::cassandra_client_encryption_keystore ? {
+        undef   => '',
+        default => $::cassandra_client_encryption_keystore,
+    }
+    $client_encryption_keystore_password = $::cassandra_client_encryption_keystore_password ? {
+        undef   => '',
+        default => $::cassandra_client_encryption_keystore_password,
+    }
+    $client_encryption_truststore = $::cassandra_client_encryption_truststore ? {
+        undef   => '',
+        default => $::cassandra_client_encryption_truststore,
+    }
+    $client_encryption_truststore_password = $::cassandra_client_encryption_truststore_password ? {
+        undef   => '',
+        default => $::cassandra_client_encryption_truststore_password,
+    }
+    $client_encryption_cipher_suites = $::cassandra_client_encryption_cipher_suites ? {
+        undef   => [],
+        default => $::cassandra_client_encryption_cipher_suites,
+    }
+
 }

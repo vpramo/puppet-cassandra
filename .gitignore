@@ -1,3 +1,5 @@
 pkg
 .vagrant
+.gitreview
 
+Gemfile.lock

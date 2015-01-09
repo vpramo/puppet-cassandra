@@ -10,9 +10,13 @@ class cassandra::config(
     $start_rpc,
     $listen_address,
     $broadcast_address,
+    $authenticator,
+    $authorizer,
     $rpc_address,
     $rpc_port,
     $rpc_server_type,
+    $rpc_min_threads,
+    $rpc_max_threads,
     $native_transport_port,
     $storage_port,
     $partitioner,
@@ -32,10 +36,24 @@ class cassandra::config(
     $internode_compression,
     $disk_failure_policy,
     $thread_stack_size,
+    $server_encryption_internode,
+    $server_encryption_require_auth,
+    $server_encryption_keystore,
+    $server_encryption_keystore_password,
+    $server_encryption_truststore,
+    $server_encryption_truststore_password,
+    $server_encryption_cipher_suites,
+    $client_encryption_enabled,
+    $client_encryption_keystore,
+    $client_encryption_keystore_password,
+    $client_encryption_require_auth,
+    $client_encryption_truststore,
+    $client_encryption_truststore_password,
+    $client_encryption_cipher_suites,
 ) {
     group { 'cassandra':
         ensure  => present,
-        require => Class['cassandra::install'],
+        require => Class['Cassandra::Install'],
     }
 
     user { 'cassandra':
@@ -47,7 +65,7 @@ class cassandra::config(
         owner   => 'cassandra',
         group   => 'cassandra',
         mode    => '0644',
-        require => Class['cassandra::install'],
+        require => Class['Cassandra::Install'],
     }
 
     file { $data_file_directories:
@@ -56,7 +74,7 @@ class cassandra::config(
 
     file { "${config_path}/cassandra-env.sh":
         ensure  => file,
-        content => template("${module_name}/cassandra-env.sh.erb"),
+        content => template("${module_name}/cassandra-env${version}.sh.erb"),
     }
     file { "${config_path}/cassandra.yaml":
         ensure  => file,
