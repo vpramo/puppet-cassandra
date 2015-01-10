@@ -1,7 +1,12 @@
+0.7.3
+  * TODO
+
 0.7.2
   * Fix cassandra 2.1.2 support
+
 0.7.1
   * Fix cassandra 2.0.x support
+
 0.7.0
   * Cassandra 2 (up to 2.0.10) support
   * Increase default thread_stack_size
