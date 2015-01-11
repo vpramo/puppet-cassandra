@@ -63,7 +63,7 @@ class cassandra::params {
     case $::osfamily {
         'Debian': {
             $package_name = $::cassandra_package_name ? {
-                undef   => 'dsc12',
+                undef   => 'dsc21',
                 default => $::cassandra_package_name,
             }
 
@@ -79,7 +79,7 @@ class cassandra::params {
         }
         'RedHat': {
             $package_name = $::cassandra_package_name ? {
-                undef   => 'dsc12',
+                undef   => 'dsc21',
                 default => $::cassandra_package_name,
             }
 
