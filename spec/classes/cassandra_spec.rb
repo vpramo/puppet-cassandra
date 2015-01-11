@@ -41,7 +41,7 @@ describe 'cassandra' do
 
     it 'does contain package dsc' do
       should contain_package('dsc').with({
-        :name    => 'dsc12',
+        :name    => 'dsc21',
       })
     end
 
