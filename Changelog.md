@@ -1,5 +1,5 @@
 0.7.3
-  * TODO
+  * default dsc package is dsc21 (https://github.com/msimonin/puppet-cassandra/pull/13)
 
 0.7.2
   * Fix cassandra 2.1.2 support
