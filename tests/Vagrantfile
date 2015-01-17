@@ -5,7 +5,7 @@
 VAGRANTFILE_API_VERSION = "2"
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
-  config.vm.box = "ubutu14.04-x64"
+  config.vm.box = "ubuntu/trusty64"
 
   config.vm.define "seed1" do |seed1|
     seed1.vm.hostname = "seed1.localdomain"
