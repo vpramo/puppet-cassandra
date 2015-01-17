@@ -232,7 +232,7 @@ class cassandra(
         server_encryption_cipher_suites       => $server_encryption_cipher_suites,
         client_encryption_enabled             => $client_encryption_enabled,
         client_encryption_keystore            => $client_encryption_keystore,
-        client_encryption_keystore_password   => $client_encryption_password,
+        client_encryption_keystore_password   => $client_encryption_keystore_password,
         client_encryption_require_auth        => $client_encryption_require_auth,
         client_encryption_truststore          => $client_encryption_truststore,
         client_encryption_truststore_password => $client_encryption_truststore_password,
