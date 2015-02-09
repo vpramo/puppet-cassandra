@@ -1,12 +1,15 @@
-0.7.3
+0.8.0
+
   * fix repo containment (https://github.com/msimonin/puppet-cassandra/pull/9)
   * default dsc package is dsc21 (https://github.com/msimonin/puppet-cassandra/pull/13)
   * fix internal variable names (https://github.com/msimonin/puppet-cassandra/pull/16)
 
 0.7.2
+
   * Fix cassandra 2.1.2 support
 
 0.7.1
+
   * Fix cassandra 2.0.x support
 
 0.7.0
