@@ -1,3 +1,7 @@
+0.8.2
+
+  * TODO
+
 0.8.1
 
   * changelog fix
