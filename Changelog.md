@@ -1,3 +1,7 @@
+0.8.1
+
+  * changelog fix
+
 0.8.0
 
   * fix repo containment (https://github.com/msimonin/puppet-cassandra/pull/9)
