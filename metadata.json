@@ -1,0 +1,26 @@
+{
+  "name": "msimonin-cassandra",
+  "version": "0.8.2",
+  "source": "https://github.com/msimonin/puppet-cassandra",
+  "author": "Jochen Schalanda, Matthieu Simonin",
+  "license": "Apache 2.0",
+  "summary": "Puppet module to install Apache Cassandra from the DataStax distribution. Forked from gini/cassandra",
+  "description": "A Puppet module to install the DataStax Community edition using the official repositories. Forked from gini/cassandra.",
+  "project_page": "https://github.com/msimonin/puppet-cassandra",
+  "operatingsystem_support": [
+  {
+    "operatingsystem": "Ubuntu",
+    "operatingsystemrelease": ["14.04"]
+  }
+  ],
+  "dependencies": [
+    {
+      "name": "puppetlabs/stdlib",
+      "version_requirement": ">= 3.0.0"
+    },
+    {
+      "name": "puppetlabs/apt",
+      "version_requirement": "1.x"
+    }
+  ]
+}
