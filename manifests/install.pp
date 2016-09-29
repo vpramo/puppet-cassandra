@@ -32,6 +32,11 @@ class cassandra::install {
             mode   => '0755',
         }
 
+        exec { 'Fix_cassandra_env':
+               command => 'sed -i -e \'s/JVM_PATCH_VERSION\" \\</JVM_PATCH_VERSION\" \-lt/g\' /etc/cassandra/cassandra-env.sh ',
+               onlyif => "cat /etc/cassandra/cassandra-env.sh | grep 'JVM_PATCH_VERSION\" \\\<'"
+            }
+
         exec { 'CASSANDRA-2356 Workaround':
             path    => ['/sbin', '/bin', '/usr/sbin', '/usr/bin'],
             command => '/etc/init.d/cassandra stop && rm -rf /var/lib/cassandra/*',
@@ -39,10 +44,10 @@ class cassandra::install {
             user    => 'root',
             require => [
                     Package['dsc'],
+                    Exec['Fix_cassandra_env'],
                     File['CASSANDRA-2356 /etc/cassandra'],
                 ],
         }
-
         file { 'CASSANDRA-2356 marker file':
             ensure  => file,
             path    => '/etc/cassandra/CASSANDRA-2356',
